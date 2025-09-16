@@ -1,0 +1,12 @@
+  GNU nano 8.5                     portainer.yml
+# Docker-Compose-Datei für Portainer (https://hub.docker.com/r/portainer/portai>
+services:
+  portainer:
+    image: portainer/portainer-ce
+    ports:
+     - 9000:9000
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - ./portainer_data:/data
+    restart: always
+
