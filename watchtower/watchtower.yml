@@ -2,12 +2,15 @@ version: '3.8'
 services:
   watchtower:
     image: containrrr/watchtower
-    container_name: watchtower # Fügen Sie einen Namen hinzu, um die Verwaltung zu erleichtern
+    container_name: watchtower
     restart: always
     volumes:
+      # Dies ist notwendig, um auf den Docker Daemon zuzugreifen und Container zu steuern
       - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - "8080:8080" # Port für Metriken und Status-Überwachung freigeben
-    command:
-      - --cleanup
-      - 0.0.0.0:8080 # Aktiviert den Webserver auf Port 8080 für Metriken
+      
+    # Metrik-Ports sind entfernt
+    # ports:
+    #   - "8080:8080" 
+      
+    # Das fehlerverursachende --metrics-addr ist entfernt
+    command: --cleanup
