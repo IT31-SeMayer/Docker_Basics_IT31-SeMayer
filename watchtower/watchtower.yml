@@ -1,9 +1,13 @@
-version: '3'
+version: '3.8'
 services:
   watchtower:
     image: containrrr/watchtower
-    command:
-      - --cleanup=true
+    container_name: watchtower # Fügen Sie einen Namen hinzu, um die Verwaltung zu erleichtern
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8080:8080" # Port für Metriken und Status-Überwachung freigeben
+    command:
+      - --cleanup
+      - 0.0.0.0:8080 # Aktiviert den Webserver auf Port 8080 für Metriken
